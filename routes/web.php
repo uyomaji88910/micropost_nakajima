@@ -27,6 +27,15 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('unfollow', 'UserFollowController@destroy')->name('user.unfollow');
         Route::get('followings', 'UsersController@followings')->name('users.followings');
         Route::get('followers', 'UsersController@followers')->name('users.followers');
+    //********************************* for favorite function *****************************//
+    // Add by Ryo Nakajima 2018/06/20 @micropost task 2 //
+    //Route::group(['prefix' => 'users/{id}'], function () {
+        Route::get('favorites', 'UsersController@favorites')->name('users.fav'); // <<= !!!! Add favorite view file !!!!!! Ryo Nakajima 2018/06/20
+        Route::post('favorite', 'FavoriteController@store')->name('fav.fav');
+        Route::delete('unfavorite', 'FavoriteController@destroy')->name('fav.unfav');
+        //});
+    //*************************************************************************************//
+
     });
 
     Route::resource('microposts', 'MicropostsController', ['only' => ['store', 'destroy']]);

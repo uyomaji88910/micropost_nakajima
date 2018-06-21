@@ -19,17 +19,8 @@
                <li role="presentation" class="{{ Request::is('users/*/followings') ? 'active' : '' }}"><a href="{{ route('users.followings', ['id' => $user->id]) }}">Followings <span class="badge">{{ $count_followings }}</span></a></li>
                <li role="presentation" class="{{ Request::is('users/*/followers') ? 'active' : '' }}"><a href="{{ route('users.followers', ['id' => $user->id]) }}">Followers <span class="badge">{{ $count_followers }}</span></a></li>
                <li role="presentation" class="{{ Request::is('users/*/favorites') ? 'active' : '' }}"><a href="{{ route('users.fav', ['id' => $user->id]) }}">Favorites <span class="badge">{{ $count_favings }}</span></a></li>
-            </ul>
-            @if (Auth::id() == $user->id)
-                    {!! Form::open(['route' => 'microposts.store']) !!}
-                      <div class="form-group">
-                      {!! Form::textarea('content', old('content'), ['class' => 'form-control', 'rows' => '2']) !!}
-                          {!! Form::submit('Post', ['class' => 'btn btn-primary btn-block']) !!}
-                      </div>
-                    {!! Form::close() !!}
-            @endif
-            @if (count($microposts) > 0)
-                    @include('microposts.microposts', ['microposts' => $microposts])
+            @if (count($favorites) > 0)
+                    @include('microposts.microposts', ['microposts' => $favorites])
             @endif
         </div>
     </div>
